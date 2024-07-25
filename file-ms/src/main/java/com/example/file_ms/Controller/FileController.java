@@ -48,5 +48,29 @@ public class FileController {
         return ResponseEntity.ok(fileNames);
     }
 
+    @GetMapping("/readExcel/{id}")
+    public ResponseEntity<Map<String, List<List<String>>>> readExcelFile(@PathVariable String id) {
+        try {
+            Map<String, List<List<String>>> excelData = fileService.readExcelFile(id);
+            return ResponseEntity.ok(excelData);
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body(null);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+    @GetMapping("/readCsv/{id}")
+    public ResponseEntity<List<List<String>>> readCsvFile(@PathVariable String id) {
+        try {
+            List<List<String>> csvData = fileService.readCsvFile(id);
+            return ResponseEntity.ok(csvData);
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body(null);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
 
 }
