@@ -1,0 +1,19 @@
+.container {
+    max-width: 1000px;
+
+  }
+  
+  .table thead th {
+    background-color: #0095C7;
+    color: white;
+    text-align: center;
+  }
+  
+  .table tbody td {
+    text-align: center;
+  }
+  
+  .table tbody td button {
+    width: 100%;
+  }
+  
