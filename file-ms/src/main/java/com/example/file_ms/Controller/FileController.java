@@ -1,6 +1,7 @@
 package com.example.file_ms.Controller;
 
 
+import com.example.file_ms.Model.FileDetailsDTO;
 import com.example.file_ms.Model.FileDocument;
 import com.example.file_ms.Service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,8 @@ public class FileController {
         return ResponseEntity.noContent().build();
     }
 
+
+
     @GetMapping("/names")
     public ResponseEntity<Map<Integer, String>> getAllFileNames() {
         Map<Integer, String> fileNames = fileService.getAllFileNames();
@@ -70,6 +73,13 @@ public class FileController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(null);
         }
+    }
+
+
+    @GetMapping("/details")
+    public ResponseEntity<List<FileDetailsDTO>> getAllFileDetails(){
+        List<FileDetailsDTO> fileDetails = fileService.getAllFileDetais();
+        return ResponseEntity.ok().body(fileDetails);
     }
 
 

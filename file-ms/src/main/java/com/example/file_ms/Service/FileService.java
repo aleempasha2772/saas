@@ -1,5 +1,6 @@
 package com.example.file_ms.Service;
 
+import com.example.file_ms.Model.FileDetailsDTO;
 import com.example.file_ms.Model.FileDocument;
 import com.example.file_ms.Repository.FileRepository;
 import com.opencsv.CSVReader;
@@ -160,5 +161,22 @@ public class FileService {
             throw new RuntimeException(e);
         }
     }
+
+    public List<FileDetailsDTO> getAllFileDetais(){
+
+        List<FileDocument> files = fileRepository.findAll();
+        List<FileDetailsDTO> fileDetailsList= new ArrayList<>();
+        for(int i=0;i<files.size();i++){
+            FileDocument fileDocument = files.get(i);
+            FileDetailsDTO fileDetailsDTO = new FileDetailsDTO();
+            fileDetailsDTO.setId(i+1);
+            fileDetailsDTO.setFileName(fileDocument.getFileName());
+            fileDetailsDTO.setFileType(fileDocument.getFileType());
+            fileDetailsDTO.setUploadDateTime(fileDocument.getDateAndTime());
+            fileDetailsList.add(fileDetailsDTO);
+        }
+        return fileDetailsList;
+    }
+
 
 }
